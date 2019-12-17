@@ -31,6 +31,7 @@
         android:background="@drawable/rounded_corner"
         android:layout_marginTop="30dp"
         android:foregroundGravity="center"
+        android:layout_centerInParent="true"
         android:overScrollMode="never"
         android:clipToPadding="false">
     </androidx.viewpager.widget.ViewPager>

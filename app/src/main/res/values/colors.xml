@@ -12,12 +12,16 @@
 
     <!--colors for card-->
     <color name="whiteCardColor">#fff</color>
+    <color name="mealplanColor">#E41740</color>
+    <color name="flexColor">#0033BE</color>
+    <color name="transferColor">#57058B</color>
 
     <!--shades of grey-->
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>
     <color name="monsoon">#777777</color>
+    <color name="halfway">#787878</color>
     <color name="jumbo">#888888</color>
     <color name="aluminum">#999999</color>
     <color name="base">#AAAAAA</color>
