@@ -15,9 +15,12 @@
     <color name="mealplanColor">#E41740</color>
     <color name="flexColor">#0033BE</color>
     <color name="transferColor">#57058B</color>
+    <color name="monthlyspendColor1">#F5BF16</color>
+    <color name="monthlyspendColor2">#BB9322</color>
 
     <!--shades of grey-->
     <color name="black">#000000</color>
+    <color name="almost">#0A0A0A</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>
     <color name="monsoon">#777777</color>

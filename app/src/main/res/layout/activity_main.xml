@@ -24,7 +24,7 @@
         android:text="$ 1024.83"/>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/accountBalances"
+        android:id="@+id/account_balances"
         android:layout_width="match_parent"
         android:layout_height="315dp"
         android:layout_below="@+id/total_balance"
@@ -34,5 +34,35 @@
         android:overScrollMode="never"
         android:clipToPadding="false">
     </androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/monthly_spend_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_balances"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/almost"
+        android:elevation="0dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/monthly_spend_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/monthly_spend_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/monthly_spend_appbarlayout"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/almost"
+        android:foregroundGravity="center"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        />
 
 </RelativeLayout>
