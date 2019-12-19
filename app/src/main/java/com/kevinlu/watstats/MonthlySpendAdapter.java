@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ public class MonthlySpendAdapter extends PagerAdapter {
     private List<MonthlySpending> monthlySpendings;
     private LayoutInflater layoutInflater;
     private Context context;
+    RelativeLayout monthlySpendCard;
 
     public MonthlySpendAdapter(List<MonthlySpending> monthlySpendings, Context context) {
         this.monthlySpendings = monthlySpendings;
@@ -52,10 +54,13 @@ public class MonthlySpendAdapter extends PagerAdapter {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.monthlyspend_item, container, false);
 
-        TextView monthlySpendAmount;
+        TextView monthlySpendMonth, monthlySpendAmount;
 
+        monthlySpendCard = view.findViewById(R.id.monthly_spend_card);
+        monthlySpendMonth = view.findViewById(R.id.monthly_spend_month);
         monthlySpendAmount = view.findViewById(R.id.monthly_spend_amount);
 
+        monthlySpendMonth.setText(monthlySpendings.get(position).getMonth());
         monthlySpendAmount.setText(monthlySpendings.get(position).getAmountSpent());
 
         container.addView(view, 0);
@@ -66,5 +71,9 @@ public class MonthlySpendAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
+    }
+
+    public void highlightItem() {
+        monthlySpendCard.setBackgroundResource(R.drawable.monthlyspend_card_bg_active);
     }
 }

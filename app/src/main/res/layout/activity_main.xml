@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -21,7 +23,7 @@
         android:textSize="@dimen/balanceTextSize"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="$ 1024.83"/>
+        android:text=""/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/account_balances"
@@ -35,29 +37,12 @@
         android:clipToPadding="false">
     </androidx.viewpager.widget.ViewPager>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/monthly_spend_appbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/account_balances"
-        android:layout_marginTop="-30dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/almost"
-        android:elevation="0dp">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/monthly_spend_tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="0dp"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/monthly_spend_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/monthly_spend_appbarlayout"
+        android:layout_below="@+id/account_balances"
+        android:layout_marginTop="-35dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/almost"
         android:foregroundGravity="center"
