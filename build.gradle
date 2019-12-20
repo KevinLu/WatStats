@@ -4,15 +4,18 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
-        
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
+apply plugin: "com.github.sherter.google-java-format"
 
 allprojects {
     repositories {
@@ -25,3 +28,31 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+import com.github.sherter.googlejavaformatgradleplugin.VerifyGoogleJavaFormat
+
+googleJavaFormat {
+    options style: 'AOSP'
+}
+
+task format(type: GoogleJavaFormat) {
+    source 'app/src/main'
+    source 'app/src/test'
+    include '**/*.java'
+}
+
+task verifyFormatting(type: VerifyGoogleJavaFormat) {
+    source 'app/src/main'
+    source 'app/src/test'
+    include '**/*.java'
+}
+
+task installGitHook(type: Copy) {
+    description 'Copies git hooks to .git/hooks directory'
+    from new File(rootDir, 'pre-commit') into {
+        new File(rootDir, '.git/hooks')
+    }
+}
+
+task(build).dependsOn(installGitHook)
