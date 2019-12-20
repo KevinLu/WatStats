@@ -16,9 +16,9 @@ import java.util.List;
 
 public class MonthlySpendAdapter extends PagerAdapter {
 
-    private List<MonthlySpending> monthlySpendings;
+    private final List<MonthlySpending> monthlySpendings;
     private LayoutInflater layoutInflater;
-    private Context context;
+    private final Context context;
     private RelativeLayout monthlySpendCard;
 
     public MonthlySpendAdapter(List<MonthlySpending> monthlySpendings, Context context) {
@@ -76,4 +76,5 @@ public class MonthlySpendAdapter extends PagerAdapter {
     public void highlightItem() {
         monthlySpendCard.setBackgroundResource(R.drawable.monthlyspend_card_bg_active);
     }
+
 }

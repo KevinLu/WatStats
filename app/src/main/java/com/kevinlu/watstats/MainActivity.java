@@ -162,14 +162,3 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
