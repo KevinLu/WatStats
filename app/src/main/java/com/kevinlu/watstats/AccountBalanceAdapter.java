@@ -16,11 +16,10 @@ import java.util.List;
 
 public class AccountBalanceAdapter extends PagerAdapter {
 
-    private List<AccountBalance> accountBalances;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private final List<AccountBalance> accountBalances;
+    private final Context context;
 
-    public AccountBalanceAdapter(List<AccountBalance> accountBalances, Context context) {
+    AccountBalanceAdapter(List<AccountBalance> accountBalances, Context context) {
         this.accountBalances = accountBalances;
         this.context = context;
     }
@@ -50,7 +49,7 @@ public class AccountBalanceAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.balance_item, container, false);
 
         ImageView accountIcon;

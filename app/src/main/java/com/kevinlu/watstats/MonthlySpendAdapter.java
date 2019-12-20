@@ -19,7 +19,7 @@ public class MonthlySpendAdapter extends PagerAdapter {
     private List<MonthlySpending> monthlySpendings;
     private LayoutInflater layoutInflater;
     private Context context;
-    RelativeLayout monthlySpendCard;
+    private RelativeLayout monthlySpendCard;
 
     public MonthlySpendAdapter(List<MonthlySpending> monthlySpendings, Context context) {
         this.monthlySpendings = monthlySpendings;

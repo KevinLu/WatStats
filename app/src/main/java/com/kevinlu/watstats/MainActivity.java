@@ -3,17 +3,12 @@ package com.kevinlu.watstats;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.francochen.watcard.WatCardAPI;
@@ -21,7 +16,6 @@ import com.francochen.watcard.WatCardService;
 import com.francochen.watcard.model.RequestVerificationToken;
 import com.francochen.watcard.model.balance.BalanceType;
 import com.francochen.watcard.model.balance.Balances;
-import com.google.android.material.tabs.TabLayout;
 import com.kevinlu.watstats.models.AccountBalance;
 import com.kevinlu.watstats.models.MonthlySpending;
 
@@ -32,15 +26,15 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView totalBalance;
-    ViewPager accountBalances;
-    ViewPager monthlySpendings;
-    AccountBalanceAdapter accountBalanceAdapter;
-    MonthlySpendAdapter monthlySpendAdapter;
-    List<AccountBalance> accountBalanceList;
-    List<MonthlySpending> monthlySpendingList;
-    WatCardAPI api = new WatCardAPI();
-    WatCardService service = api.createService();
+    private TextView totalBalance;
+    private ViewPager accountBalances;
+    private ViewPager monthlySpendings;
+    private AccountBalanceAdapter accountBalanceAdapter;
+    private MonthlySpendAdapter monthlySpendAdapter;
+    private List<AccountBalance> accountBalanceList;
+    private List<MonthlySpending> monthlySpendingList;
+    private WatCardAPI api = new WatCardAPI();
+    private WatCardService service = api.createService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,23 +51,13 @@ public class MainActivity extends AppCompatActivity {
         accountBalances.setAdapter(accountBalanceAdapter);
         accountBalances.setPadding(dpToPx(36), dpToPx(36), dpToPx(205), 0);
 
-        accountBalances.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
+        accountBalances.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 if (position < accountBalanceList.size() - 1) {
                     return;
                 }
                 accountBalances.setCurrentItem(position - 1, true);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
             }
         });
 
@@ -88,22 +72,15 @@ public class MainActivity extends AppCompatActivity {
         monthlySpendings.setAdapter(monthlySpendAdapter);
         monthlySpendings.setPadding(dpToPx(18), 0, dpToPx(226), 0);
 
-//        monthlySpendings.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+        monthlySpendings.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                if (position < monthlySpendingList.size() - 1) {
+                    return;
+                }
+                monthlySpendings.setCurrentItem(position - 1, true);
+            }
+        });
 
         login("user", "pass");
     }
@@ -143,23 +120,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Balances> call, Response<Balances> response) {
                 Log.d("Watcard:balances", response.toString());
-                String RESIDENCE_PLAN = response.body().get(BalanceType.RESIDENCE_PLAN).getBalance();
-                String SUPER_SAVER_MP = response.body().get(BalanceType.SUPER_SAVER_MP).getBalance();
-                String SAVER_MP = response.body().get(BalanceType.SAVER_MP).getBalance();
-                String CASUAL_MP = response.body().get(BalanceType.CASUAL_MP).getBalance();
-                String FLEXIBLE_1 = response.body().get(BalanceType.FLEXIBLE_1).getBalance();
-                String FLEXIBLE_2 = response.body().get(BalanceType.FLEXIBLE_2).getBalance();
-                String TRANSFER_MP = response.body().get(BalanceType.TRANSFER_MP).getBalance();
-                String DONS_MEAL_ALLOW = response.body().get(BalanceType.DONS_MEAL_ALLOW).getBalance();
-                String DONS_FLEX = response.body().get(BalanceType.DONS_FLEX).getBalance();
-                String UNALLOCATED = response.body().get(BalanceType.UNALLOCATED).getBalance();
-                String DEPT_CHARGE = response.body().get(BalanceType.DEPT_CHARGE).getBalance();
-                String OVERDRAFT = response.body().get(BalanceType.OVERDRAFT).getBalance();
 
                 setAccountBalances(
-                        RESIDENCE_PLAN,
-                        FLEXIBLE_2,
-                        TRANSFER_MP
+                        response.body().get(BalanceType.RESIDENCE_PLAN).getBalance(),
+                        response.body().get(BalanceType.FLEXIBLE_2).getBalance(),
+                        response.body().get(BalanceType.TRANSFER_MP).getBalance()
                 );
 
                 float sum = 0;
