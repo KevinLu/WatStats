@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         monthlySpendingList = new ArrayList<>();
-        monthlySpendingList.add(new MonthlySpending("December", "$ 254.98"));
-        monthlySpendingList.add(new MonthlySpending("November", "$ 392.11"));
-        monthlySpendingList.add(new MonthlySpending("October", "$ 153.50"));
 
         monthlySpendAdapter = new MonthlySpendAdapter(monthlySpendingList, this);
 
