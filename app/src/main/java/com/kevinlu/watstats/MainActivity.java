@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private List<MonthlySpending> monthlySpendingList;
     private WatCardAPI api = new WatCardAPI();
     private WatCardService service = api.createService();
+    private String user;
+    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        login("user", "pass");
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            user = bundle.getString("user");
+            pass = bundle.getString("pass");
+        }
+
+        login(user, pass);
     }
 
     public void login(String id, String pin) {
