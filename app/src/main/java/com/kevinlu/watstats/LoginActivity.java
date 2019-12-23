@@ -1,5 +1,6 @@
 package com.kevinlu.watstats;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -17,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout container;
     AnimationDrawable anim;
 
-    //LoginHelper loginHelper;
     TextView lblHeader;
 
     EditText edtPassword, edtEmail;
@@ -33,10 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         container = findViewById(R.id.container);
         anim = (AnimationDrawable) container.getBackground();
-        anim.setEnterFadeDuration(100);
-        anim.setExitFadeDuration(1000);
-
-        //loginHelper = new LoginHelper(MainActivity.this);
+        anim.setEnterFadeDuration(1000);
+        anim.setExitFadeDuration(2000);
 
         lblHeader = findViewById(R.id.appHeader);
 
@@ -45,8 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.loginButton);
 
         btnLogin.setOnClickListener(view -> {
-            if (edtPassword.getText().toString().equals("") && edtEmail.getText().toString().equals("")) {
-                // Show error...
+            if (edtPassword.getText().toString().equals("") || edtEmail.getText().toString().equals("")) {
+                AlertDialog.Builder blankAlert  = new AlertDialog.Builder(this);
+
+                blankAlert.setMessage("Please enter your login details.");
+                blankAlert.setTitle("Empty fields");
+                blankAlert.setPositiveButton("OK", null);
+                blankAlert.setCancelable(true);
+                blankAlert.create().show();
             } else {
                 Intent launchHome = new Intent(LoginActivity.this, MainActivity.class);
                 launchHome.putExtra("user", edtEmail.getText().toString());
@@ -59,14 +64,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (anim != null && !anim.isRunning())
-            anim.start();
+        if (anim != null && !anim.isRunning()) anim.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (anim != null && anim.isRunning())
-            anim.stop();
+        if (anim != null && anim.isRunning()) anim.stop();
     }
 }

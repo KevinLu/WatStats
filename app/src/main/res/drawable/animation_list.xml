@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/color1"
+        android:drawable="@drawable/gradient_night_fade"
         android:duration="4000" />
     <item
-        android:drawable="@drawable/color2"
+        android:drawable="@drawable/gradient_plum_plate"
         android:duration="4000" />
     <item
-        android:drawable="@drawable/color3"
+        android:drawable="@drawable/gradient_mixed_hopes"
         android:duration="4000" />
     <item
-        android:drawable="@drawable/color4"
+        android:drawable="@drawable/gradient_purple_division"
         android:duration="4000" />
     <item
-        android:drawable="@drawable/color5"
+        android:drawable="@drawable/gradient_eternal_constance"
         android:duration="4000" />
 </animation-list>
