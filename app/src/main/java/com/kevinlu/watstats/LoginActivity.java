@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.loginButton);
 
         btnLogin.setOnClickListener(view -> {
-            if (edtPassword.getText().toString().equals("") || edtEmail.getText().toString().equals("")) {
+            if (edtPassword.getText().toString().isEmpty() || edtEmail.getText().toString().isEmpty()) {
                 AlertDialog.Builder blankAlert  = new AlertDialog.Builder(this);
 
                 blankAlert.setMessage("Please enter your login details.");
