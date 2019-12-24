@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners
+                android:radius="1dp"
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"/>
+            <gradient
+                android:startColor="@color/monthlyspendColor1"
+                android:endColor="@color/monthlyspendColor2"
+                android:angle="-45" />
+        </shape>
+    </item>
+</selector>
