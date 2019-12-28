@@ -11,18 +11,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.francochen.watcard.WatCardAPI;
-import com.francochen.watcard.WatCardService;
-import com.francochen.watcard.model.RequestVerificationToken;
+import com.francochen.watcard.WatCardClient;
 import com.francochen.watcard.model.balance.BalanceType;
 import com.francochen.watcard.model.balance.Balances;
 import com.kevinlu.watstats.models.AccountBalance;
 import com.kevinlu.watstats.models.MonthlySpending;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager accountBalances;
     private ViewPager monthlySpendings;
     private AccountBalanceAdapter accountBalanceAdapter;
-    private MonthlySpendAdapter monthlySpendAdapter;
     private List<AccountBalance> accountBalanceList;
     private List<MonthlySpending> monthlySpendingList;
-    private WatCardAPI api = new WatCardAPI();
-    private WatCardService service = api.createService();
+    private WatCardClient.Builder builder = new WatCardClient.Builder();
+    private WatCardClient client;
     private String user;
     private String pass;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         monthlySpendingList = new ArrayList<>();
 
-        monthlySpendAdapter = new MonthlySpendAdapter(monthlySpendingList, this);
+        MonthlySpendAdapter monthlySpendAdapter = new MonthlySpendAdapter(monthlySpendingList, this);
 
         monthlySpendings = findViewById(R.id.monthly_spend_pager);
         monthlySpendings.setAdapter(monthlySpendAdapter);
@@ -81,71 +78,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // This login info is 100% working as confirmed by login screen.
+        // No need to check validity.
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             user = bundle.getString("user");
             pass = bundle.getString("pass");
         }
 
-        login(user, pass);
-    }
+        builder.account(user);
+        builder.pin(pass);
+        client = builder.build();
 
-    public void login(String id, String pin) {
-        service.getRequestVerificationToken().enqueue(new Callback<RequestVerificationToken>() {
-            @Override
-            public void onResponse(Call<RequestVerificationToken> call, Response<RequestVerificationToken> response) {
-                RequestVerificationToken token = response.body();
-                authenticate(token, id, pin);
-            }
-
-            @Override
-            public void onFailure(Call<RequestVerificationToken> call, Throwable t) {
-                Log.e("Watcard", t.toString());
-            }
-        });
-    }
-
-    public void authenticate(RequestVerificationToken token, String id, String pin) {
-        service.authenticate(id, pin, 0, token).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("Watcard:login", response.toString());
-                getBalances();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("Watcard:authfail", t.toString());
-            }
-        });
+        getBalances();
     }
 
     public void getBalances() {
-        service.getBalances().enqueue(new Callback<Balances>() {
-            @Override
-            public void onResponse(Call<Balances> call, Response<Balances> response) {
-                Log.d("Watcard:balances", response.toString());
+        compositeDisposable.add(client.getBalances()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Balances>() {
+                    @Override
+                    public void onSuccess(Balances balances) {
+                        setAccountBalances(
+                                balances.get(BalanceType.RESIDENCE_PLAN).getBalance().toString(),
+                                balances.get(BalanceType.FLEXIBLE_2).getBalance().toString(),
+                                balances.get(BalanceType.TRANSFER_MP).getBalance().toString()
+                        );
 
-                setAccountBalances(
-                        response.body().get(BalanceType.RESIDENCE_PLAN).getBalance(),
-                        response.body().get(BalanceType.FLEXIBLE_2).getBalance(),
-                        response.body().get(BalanceType.TRANSFER_MP).getBalance()
-                );
+                        float sum = 0;
+                        for (BalanceType balanceType : BalanceType.values()) {
+                            sum += Float.valueOf(balances.get(balanceType).getBalance().toString());
+                        }
+                        String total = "$ " + sum;
+                        setTotalBalance(total);
+                    }
 
-                float sum = 0;
-                for (BalanceType balanceType : BalanceType.values()) {
-                    sum += Float.valueOf(response.body().get(balanceType).getBalance().
-                            substring(1));
-                }
-                String total = "$ " + sum;
-                setTotalBalance(total);
-            }
-
-            @Override
-            public void onFailure(Call<Balances> call, Throwable t) {
-                Log.e("Watcard:balancesfail", t.toString());
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("Watcard:getBalances()", e.toString());
+                    }
+                }));
     }
 
     public void setTotalBalance(String total) {
@@ -165,5 +137,11 @@ public class MainActivity extends AppCompatActivity {
     public int dpToPx(int dp) {
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
     }
 }
