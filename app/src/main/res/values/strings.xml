@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">WatStats</string>
 
-    <string name="December">December</string>
+    <!--Login-->
+    <string name="watcard_number">Watcard number</string>
+    <string name="pin">Pin</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login">Log in</string>
 </resources>

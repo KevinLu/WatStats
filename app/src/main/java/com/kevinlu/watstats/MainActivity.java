@@ -14,8 +14,8 @@ import java.util.List;
 import com.francochen.watcard.WatCardClient;
 import com.francochen.watcard.model.balance.BalanceType;
 import com.francochen.watcard.model.balance.Balances;
-import com.kevinlu.watstats.models.AccountBalance;
-import com.kevinlu.watstats.models.MonthlySpending;
+import com.kevinlu.watstats.data.AccountBalance;
+import com.kevinlu.watstats.data.MonthlySpending;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                                 balances.get(BalanceType.FLEXIBLE_2).getBalance().toString(),
                                 balances.get(BalanceType.TRANSFER_MP).getBalance().toString()
                         );
-
+                        //TODO: change float to BigDecimal
                         float sum = 0;
                         for (BalanceType balanceType : BalanceType.values()) {
                             sum += Float.valueOf(balances.get(balanceType).getBalance().toString());

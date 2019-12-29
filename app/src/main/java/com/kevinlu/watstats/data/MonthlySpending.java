@@ -1,4 +1,4 @@
-package com.kevinlu.watstats.models;
+package com.kevinlu.watstats.data;
 
 public class MonthlySpending {
     private String month;

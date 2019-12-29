@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.kevinlu.watstats.models.AccountBalance;
+import com.kevinlu.watstats.data.AccountBalance;
 
 import java.util.List;
 
