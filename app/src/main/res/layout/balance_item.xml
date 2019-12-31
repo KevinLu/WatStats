@@ -23,7 +23,8 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginStart="22dp"
                 android:layout_width="45dp"
-                android:layout_height="45dp" />
+                android:layout_height="45dp"
+                android:contentDescription="Account icon" />
 
             <TextView
                 android:id="@+id/account_title"
@@ -61,7 +62,8 @@
                     android:src="@drawable/ic_trending_down_24px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"/>
+                    android:layout_weight="0.5"
+                    android:contentDescription="Trending icon" />
 
                 <TextView
                     android:id="@+id/account_change"

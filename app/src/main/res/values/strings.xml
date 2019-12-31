@@ -6,4 +6,7 @@
     <string name="pin">Pin</string>
     <string name="remember_me">Remember me</string>
     <string name="login">Log in</string>
+
+    <!--Homepage-->
+    <string name="total_balance">Total balance</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginStart="36dp"
         android:textSize="@dimen/balanceDescTextSize"
-        android:text="Total balance" />
+        android:text="@string/total_balance" />
 
     <TextView
         android:id="@+id/total_balance"
