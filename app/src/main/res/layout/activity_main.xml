@@ -5,49 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/total_balance_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginStart="36dp"
-        android:textSize="@dimen/balanceDescTextSize"
-        android:text="Total balance" />
-
-    <TextView
-        android:id="@+id/total_balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_below="@+id/total_balance_text"
-        android:textSize="@dimen/balanceTextSize"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text=""/>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/account_balances"
-        android:layout_width="match_parent"
-        android:layout_height="315dp"
-        android:layout_below="@+id/total_balance"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginTop="30dp"
-        android:foregroundGravity="center"
-        android:overScrollMode="never"
-        android:clipToPadding="false">
-    </androidx.viewpager.widget.ViewPager>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/monthly_spend_pager"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/account_balances"
-        android:layout_marginTop="-35dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/almost"
-        android:foregroundGravity="center"
-        android:overScrollMode="never"
-        android:clipToPadding="false"
-        />
+        android:layout_above="@id/bottom_nav"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/almost"
+        android:theme="@style/BottomNavigationTheme"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>

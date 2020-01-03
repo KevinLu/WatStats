@@ -2,4 +2,6 @@
     <string name="app_name">WatStats</string>
 
     <string name="December">December</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_transactions">Transactions</string>
 </resources>

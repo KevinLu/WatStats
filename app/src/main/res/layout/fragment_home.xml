@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/total_balance_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:text="Total balance"
+        android:textSize="@dimen/balanceDescTextSize" />
+
+    <TextView
+        android:id="@+id/total_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/total_balance_text"
+        android:layout_marginStart="36dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/balanceTextSize"
+        android:textStyle="bold" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/account_balances"
+        android:layout_width="match_parent"
+        android:layout_height="315dp"
+        android:layout_below="@+id/total_balance"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_corner"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/monthly_spend_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/account_balances"
+        android:layout_marginTop="-35dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/almost"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never" />
+
+</RelativeLayout>
