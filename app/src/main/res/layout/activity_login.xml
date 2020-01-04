@@ -8,62 +8,62 @@
     android:gravity="center"
     android:padding="50dp">
 
-        <TextView
-            android:id="@+id/appHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:padding="20dp"
-            android:text="@string/app_name"
-            android:textColor="#fff"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/appHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:text="@string/app_name"
+        android:textColor="#fff"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/loginUser"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/login_text_bg"
-            android:hint="@string/watcard_number"
-            android:padding="10dp"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
-            android:autofillHints="username"
-            android:inputType="number" />
+    <EditText
+        android:id="@+id/loginUser"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/login_text_bg"
+        android:hint="@string/watcard_number"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:autofillHints="username"
+        android:inputType="number" />
 
-        <EditText
-            android:id="@+id/loginPass"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/login_text_bg"
-            android:hint="@string/pin"
-            android:inputType="numberPassword"
-            android:padding="10dp"
-            android:textColor="#fff"
-            android:textColorHint="#fff"
-            android:autofillHints="password" />
+    <EditText
+        android:id="@+id/loginPass"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/login_text_bg"
+        android:hint="@string/pin"
+        android:inputType="numberPassword"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        android:autofillHints="password" />
 
-        <CheckBox
-            android:id="@+id/saveLoginCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/remember_me"
-            android:textColor="#FFF" />
+    <CheckBox
+        android:id="@+id/saveLoginCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/remember_me"
+        android:textColor="#FFF" />
 
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/login_button"
-            android:text="@string/login"
-            android:textColor="#000" />
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_button"
+        android:text="@string/login"
+        android:textColor="#000" />
 
 </LinearLayout>
