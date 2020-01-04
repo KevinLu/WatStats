@@ -1,4 +1,4 @@
-package com.kevinlu.watstats.models;
+package com.kevinlu.watstats.data;
 
 //Class for date (category) for listing transactions under appropriate headings
 public class Date {

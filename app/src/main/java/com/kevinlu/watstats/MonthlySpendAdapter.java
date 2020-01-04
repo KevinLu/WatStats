@@ -10,14 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.kevinlu.watstats.models.MonthlySpending;
+import com.kevinlu.watstats.data.MonthlySpending;
 
 import java.util.List;
 
 public class MonthlySpendAdapter extends PagerAdapter {
 
     private final List<MonthlySpending> monthlySpendings;
-    private LayoutInflater layoutInflater;
     private final Context context;
     private RelativeLayout monthlySpendCard;
 
@@ -51,7 +50,7 @@ public class MonthlySpendAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.monthlyspend_item, container, false);
 
         TextView monthlySpendMonth, monthlySpendAmount;

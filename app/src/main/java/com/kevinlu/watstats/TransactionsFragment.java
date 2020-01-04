@@ -16,8 +16,8 @@ import com.jaychang.srv.SimpleRecyclerView;
 import com.jaychang.srv.decoration.DividerItemDecoration;
 import com.jaychang.srv.decoration.SectionHeaderProvider;
 import com.jaychang.srv.decoration.SimpleSectionHeaderProvider;
-import com.kevinlu.watstats.models.Date;
-import com.kevinlu.watstats.models.Transaction;
+import com.kevinlu.watstats.data.Date;
+import com.kevinlu.watstats.data.Transaction;
 
 import java.util.ArrayList;
 import java.util.Collections;

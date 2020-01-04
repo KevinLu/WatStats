@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.jaychang.srv.SimpleCell;
 import com.jaychang.srv.SimpleViewHolder;
-import com.kevinlu.watstats.models.Transaction;
+import com.kevinlu.watstats.data.Transaction;
 
 public class RecyclerViewAdapter extends SimpleCell<Transaction, RecyclerViewAdapter.ViewHolder>{
 

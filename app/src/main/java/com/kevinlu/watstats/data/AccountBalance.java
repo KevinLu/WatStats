@@ -1,4 +1,4 @@
-package com.kevinlu.watstats.models;
+package com.kevinlu.watstats.data;
 
 public class AccountBalance {
     private int accountIcon;

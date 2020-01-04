@@ -1,4 +1,4 @@
-package com.kevinlu.watstats.models;
+package com.kevinlu.watstats.data;
 
 //Class for a transactions which includes this data
 public class Transaction {
