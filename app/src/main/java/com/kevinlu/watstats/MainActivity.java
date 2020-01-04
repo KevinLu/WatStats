@@ -2,12 +2,18 @@ package com.kevinlu.watstats;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    final Fragment home = new HomeFragment();
+    final Fragment transactions = new TransactionsFragment();
+    final FragmentManager manager = getSupportFragmentManager();
+    Fragment selectedFragment = home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,28 +23,22 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
-        }
+        manager.beginTransaction().add(R.id.fragment_container, transactions, "2").hide(transactions).commit();
+        manager.beginTransaction().add(R.id.fragment_container, home, "1").commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
-                Fragment selectedFragment = null;
-
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        selectedFragment = new HomeFragment();
-                        break;
+                        manager.beginTransaction().hide(selectedFragment).show(home).commit();
+                        selectedFragment = home;
+                        return true;
                     case R.id.nav_transactions:
-                        selectedFragment = new TransactionsFragment();
-                        break;
+                        manager.beginTransaction().hide(selectedFragment).show(transactions).commit();
+                        selectedFragment = transactions;
+                        return true;
                 }
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        selectedFragment).commit();
-
-                return true;
+                return false;
             };
 }
