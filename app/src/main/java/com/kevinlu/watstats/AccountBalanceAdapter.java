@@ -8,70 +8,61 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevinlu.watstats.data.AccountBalance;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
-public class AccountBalanceAdapter extends PagerAdapter {
+public class AccountBalanceAdapter extends RecyclerView.Adapter<AccountBalanceAdapter.AccountBalanceViewHolder> {
 
-    private final List<AccountBalance> accountBalances;
-    private final Context context;
+    private List<AccountBalance> accountBalances;
 
-    AccountBalanceAdapter(List<AccountBalance> accountBalances, Context context) {
+    AccountBalanceAdapter(List<AccountBalance> accountBalances) {
         this.accountBalances = accountBalances;
-        this.context = context;
     }
 
     /**
      * Return the number of views available.
      */
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return accountBalances.size();
     }
 
-    /**
-     * Determines whether a page View is associated with a specific key object
-     * as returned by {@link #instantiateItem(ViewGroup, int)}. This method is
-     * required for a PagerAdapter to function properly.
-     *
-     * @param view   Page View to check for association with <code>object</code>
-     * @param object Object to check for association with <code>view</code>
-     * @return true if <code>view</code> is associated with the key object <code>object</code>
-     */
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view.equals(object);
+    @NotNull
+    public AccountBalanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new AccountBalanceViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.balance_item, parent, false
+                )
+        );
     }
 
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.balance_item, container, false);
+    class AccountBalanceViewHolder extends RecyclerView.ViewHolder {
+        private ImageView accountIcon;
+        private TextView accountTitle, accountBalance, accountBalanceChange;
 
-        ImageView accountIcon;
-        TextView accountTitle, accountBalance, accountBalanceChange;
+        AccountBalanceViewHolder(@NonNull View itemView) {
+            super(itemView);
+            accountIcon = itemView.findViewById(R.id.account_icon);
+            accountTitle = itemView.findViewById(R.id.account_title);
+            accountBalance = itemView.findViewById(R.id.account_balance);
+            accountBalanceChange = itemView.findViewById(R.id.account_change);
+        }
 
-        accountIcon = view.findViewById(R.id.account_icon);
-        accountTitle = view.findViewById(R.id.account_title);
-        accountBalance = view.findViewById(R.id.account_balance);
-        accountBalanceChange = view.findViewById(R.id.account_change);
-
-        accountIcon.setImageResource(accountBalances.get(position).getAccountIcon());
-        accountTitle.setText(accountBalances.get(position).getAccountTitle());
-        accountBalance.setText(accountBalances.get(position).getAccountBalance());
-        accountBalanceChange.setText(accountBalances.get(position).getAccountBalanceChange());
-
-        container.addView(view, 0);
-
-        return view;
+        void setAccountBalanceData(AccountBalance accountBalanceData) {
+            accountIcon.setImageResource(accountBalanceData.getAccountIcon());
+            accountTitle.setText(accountBalanceData.getAccountTitle());
+            accountBalance.setText(accountBalanceData.getAccountBalance());
+            accountBalanceChange.setText(accountBalanceData.getAccountBalanceChange());
+        }
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View) object);
+    public void onBindViewHolder(@NonNull AccountBalanceAdapter.AccountBalanceViewHolder holder, int position) {
+        holder.setAccountBalanceData(accountBalances.get(position));
     }
 }

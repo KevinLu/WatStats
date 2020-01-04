@@ -12,9 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.francochen.watcard.WatCardClient;
 import com.francochen.watcard.model.balance.BalanceType;
@@ -40,7 +43,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 public class HomeFragment extends Fragment {
 
     private TextView totalBalance;
-    private ViewPager accountBalances;
+    private ViewPager2 accountBalances;
     private ViewPager monthlySpendings;
     private AccountBalanceAdapter accountBalanceAdapter;
     private MonthlySpendAdapter monthlySpendAdapter;
@@ -70,19 +73,25 @@ public class HomeFragment extends Fragment {
 
         accountBalanceList = new ArrayList<>();
 
-        accountBalanceAdapter = new AccountBalanceAdapter(accountBalanceList, activity);
+        accountBalanceAdapter = new AccountBalanceAdapter(accountBalanceList);
 
         accountBalances = view.findViewById(R.id.account_balances);
         accountBalances.setAdapter(accountBalanceAdapter);
-        accountBalances.setPadding(dpToPx(36), dpToPx(36), dpToPx(205), 0);
+        accountBalances.setOffscreenPageLimit(2);
 
-        accountBalances.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        accountBalances.setPageTransformer((page, position) -> {
+            float myOffset = position * -(dpToPx(36) + dpToPx(205));
+            page.setTranslationX(myOffset);
+        });
+
+        accountBalances.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                super.onPageSelected(position);
                 if (position < accountBalanceList.size() - 1) {
                     return;
                 }
-                accountBalances.setCurrentItem(position - 1, true);
+                accountBalances.setCurrentItem(position-1);
             }
         });
 

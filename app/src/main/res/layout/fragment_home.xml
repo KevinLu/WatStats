@@ -24,16 +24,13 @@
         android:textSize="@dimen/balanceTextSize"
         android:textStyle="bold" />
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/account_balances"
         android:layout_width="match_parent"
-        android:layout_height="315dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/total_balance"
         android:layout_marginTop="30dp"
-        android:background="@drawable/rounded_corner"
-        android:clipToPadding="false"
-        android:foregroundGravity="center"
-        android:overScrollMode="never" />
+        android:background="@drawable/rounded_corner" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/monthly_spend_pager"
@@ -42,9 +39,6 @@
         android:layout_below="@+id/account_balances"
         android:layout_marginTop="-35dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/almost"
-        android:clipToPadding="false"
-        android:foregroundGravity="center"
-        android:overScrollMode="never" />
+        android:backgroundTint="@color/almost" />
 
 </RelativeLayout>
