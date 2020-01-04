@@ -1,6 +1,5 @@
 package com.kevinlu.watstats;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,68 +7,59 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevinlu.watstats.data.MonthlySpending;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
-public class MonthlySpendAdapter extends PagerAdapter {
+public class MonthlySpendAdapter extends RecyclerView.Adapter<MonthlySpendAdapter.MonthlySpendViewHolder> {
 
-    private final List<MonthlySpending> monthlySpendings;
-    private final Context context;
+    private List<MonthlySpending> monthlySpendings;
     private RelativeLayout monthlySpendCard;
 
-    public MonthlySpendAdapter(List<MonthlySpending> monthlySpendings, Context context) {
+    MonthlySpendAdapter(List<MonthlySpending> monthlySpendings) {
         this.monthlySpendings = monthlySpendings;
-        this.context = context;
     }
 
     /**
      * Return the number of views available.
      */
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return monthlySpendings.size();
     }
 
-    /**
-     * Determines whether a page View is associated with a specific key object
-     * as returned by {@link #instantiateItem(ViewGroup, int)}. This method is
-     * required for a PagerAdapter to function properly.
-     *
-     * @param view   Page View to check for association with <code>object</code>
-     * @param object Object to check for association with <code>view</code>
-     * @return true if <code>view</code> is associated with the key object <code>object</code>
-     */
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view.equals(object);
+    @NotNull
+    public MonthlySpendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MonthlySpendViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.monthlyspend_item, parent, false
+                )
+        );
     }
 
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.monthlyspend_item, container, false);
+    class MonthlySpendViewHolder extends RecyclerView.ViewHolder {
+        private TextView monthlySpendMonth, monthlySpendAmount;
 
-        TextView monthlySpendMonth, monthlySpendAmount;
+        MonthlySpendViewHolder(@NonNull View itemView) {
+            super(itemView);
+            monthlySpendCard = itemView.findViewById(R.id.monthly_spend_card);
+            monthlySpendMonth = itemView.findViewById(R.id.monthly_spend_month);
+            monthlySpendAmount = itemView.findViewById(R.id.monthly_spend_amount);
+        }
 
-        monthlySpendCard = view.findViewById(R.id.monthly_spend_card);
-        monthlySpendMonth = view.findViewById(R.id.monthly_spend_month);
-        monthlySpendAmount = view.findViewById(R.id.monthly_spend_amount);
-
-        monthlySpendMonth.setText(monthlySpendings.get(position).getMonth());
-        monthlySpendAmount.setText(monthlySpendings.get(position).getAmountSpent());
-
-        container.addView(view, 0);
-
-        return view;
+        void setMonthlySpendData(MonthlySpending monthlySpendData) {
+            monthlySpendMonth.setText(monthlySpendData.getMonth());
+            monthlySpendAmount.setText(monthlySpendData.getAmountSpent());
+        }
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View) object);
+    public void onBindViewHolder(@NonNull MonthlySpendAdapter.MonthlySpendViewHolder holder, int position) {
+        holder.setMonthlySpendData(monthlySpendings.get(position));
     }
 
     public void highlightItem() {

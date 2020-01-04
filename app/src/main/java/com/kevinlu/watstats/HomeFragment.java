@@ -12,10 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -44,7 +42,7 @@ public class HomeFragment extends Fragment {
 
     private TextView totalBalance;
     private ViewPager2 accountBalances;
-    private ViewPager monthlySpendings;
+    private ViewPager2 monthlySpendings;
     private AccountBalanceAdapter accountBalanceAdapter;
     private MonthlySpendAdapter monthlySpendAdapter;
     private List<AccountBalance> accountBalanceList;
@@ -78,7 +76,6 @@ public class HomeFragment extends Fragment {
         accountBalances = view.findViewById(R.id.account_balances);
         accountBalances.setAdapter(accountBalanceAdapter);
         accountBalances.setOffscreenPageLimit(2);
-
         accountBalances.setPageTransformer((page, position) -> {
             float myOffset = position * -(dpToPx(36) + dpToPx(205));
             page.setTranslationX(myOffset);
@@ -97,19 +94,24 @@ public class HomeFragment extends Fragment {
 
         monthlySpendingList = new ArrayList<>();
 
-        monthlySpendAdapter = new MonthlySpendAdapter(monthlySpendingList, activity);
+        monthlySpendAdapter = new MonthlySpendAdapter(monthlySpendingList);
 
         monthlySpendings = view.findViewById(R.id.monthly_spend_pager);
         monthlySpendings.setAdapter(monthlySpendAdapter);
-        monthlySpendings.setPadding(dpToPx(18), 0, dpToPx(226), 0);
+        monthlySpendings.setOffscreenPageLimit(2);
+        monthlySpendings.setPageTransformer((page, position) -> {
+            float myOffset = position * -(dpToPx(18) + dpToPx(226));
+            page.setTranslationX(myOffset);
+        });
 
-        monthlySpendings.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        monthlySpendings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                super.onPageSelected(position);
                 if (position < monthlySpendingList.size() - 1) {
                     return;
                 }
-                monthlySpendings.setCurrentItem(position - 1, true);
+                monthlySpendings.setCurrentItem(position-1);
             }
         });
 
