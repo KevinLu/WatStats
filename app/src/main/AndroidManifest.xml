@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kevinlu.watstats">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,10 +11,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:label="@string/app_name"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
         <activity
             android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashScreen"
             android:label="@string/app_name"
             android:noHistory="true">
             <intent-filter>

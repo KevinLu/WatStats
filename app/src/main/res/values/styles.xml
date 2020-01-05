@@ -36,4 +36,8 @@
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splashscreen_bg</item>
+    </style>
+
 </resources>
