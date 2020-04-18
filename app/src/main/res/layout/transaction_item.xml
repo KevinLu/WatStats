@@ -1,45 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_marginTop="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginBottom="22dp"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/ic_mealplan"/>
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/leftMarginSize"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_mealplan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/terminal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:text="Mudies"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_marginTop="22dp"
-        android:layout_marginStart="75dp"
-        android:text="Mudies"/>
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginStart="75dp"
-        android:layout_below="@+id/terminal"
-        android:text="12/25/2019"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="12/25/2019"
+        android:textColor="@color/oil"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/terminal" />
 
     <TextView
         android:id="@+id/amount"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="22dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/leftMarginSize"
+        android:fontFamily="@font/opensans_semibold"
         android:gravity="right"
         android:text="-$5.30"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

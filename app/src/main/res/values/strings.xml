@@ -9,6 +9,9 @@
 
     <!--Homepage-->
     <string name="total_balance">Total balance</string>
+    <string name="current_balance">$ Bal</string>
+    <string name="balances">Balances</string>
+    <string name="recent_transactions">Recent transactions</string>
     <string name="December">December</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_transactions">Transactions</string>

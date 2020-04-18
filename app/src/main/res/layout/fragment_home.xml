@@ -1,44 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whiteBg"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:elevation="5dp"
+        android:translationZ="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_header_bg_highlight" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:elevation="6dp"
+        android:translationZ="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_header_bg" />
+
     <TextView
-        android:id="@+id/total_balance_text"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:text="Total balance"
-        android:textSize="@dimen/balanceDescTextSize" />
+        android:layout_marginStart="@dimen/leftMarginSize"
+        android:layout_marginTop="32dp"
+        android:text="@string/total_balance"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="20sp"
+        android:translationZ="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/total_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/total_balance_text"
-        android:layout_marginStart="36dp"
-        android:text=""
+        android:layout_marginStart="@dimen/leftMarginSize"
+        android:translationZ="9dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/current_balance"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/leftMarginSize"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/balances"
         android:textColor="@color/black"
-        android:textSize="@dimen/balanceTextSize"
-        android:textStyle="bold" />
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/account_balances"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/total_balance"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rounded_corner" />
+        android:layout_height="225dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/monthly_spend_pager"
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/leftMarginSize"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/recent_transactions"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_balances" />
+
+    <com.jaychang.srv.SimpleRecyclerView
+        android:id="@+id/account_transactions"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/account_balances"
-        android:layout_marginTop="-35dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/almost" />
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

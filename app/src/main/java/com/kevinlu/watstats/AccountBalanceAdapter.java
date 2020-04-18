@@ -50,14 +50,14 @@ public class AccountBalanceAdapter extends RecyclerView.Adapter<AccountBalanceAd
             accountIcon = itemView.findViewById(R.id.account_icon);
             accountTitle = itemView.findViewById(R.id.account_title);
             accountBalance = itemView.findViewById(R.id.account_balance);
-            accountBalanceChange = itemView.findViewById(R.id.account_change);
+            //accountBalanceChange = itemView.findViewById(R.id.account_change);
         }
 
         void setAccountBalanceData(AccountBalance accountBalanceData) {
             accountIcon.setImageResource(accountBalanceData.getAccountIcon());
             accountTitle.setText(accountBalanceData.getAccountTitle());
             accountBalance.setText(accountBalanceData.getAccountBalance());
-            accountBalanceChange.setText(accountBalanceData.getAccountBalanceChange());
+            //accountBalanceChange.setText(accountBalanceData.getAccountBalanceChange());
         }
     }
 
