@@ -33,6 +33,7 @@ public class RecyclerViewAdapter extends SimpleCell<Transaction, RecyclerViewAda
         viewHolder.terminal.setText(getItem().getTerminal());
         viewHolder.date.setText(getItem().getDateTime());
         viewHolder.amount.setText(getItem().getAmount());
+        viewHolder.balanceType.setText(getItem().getBalanceType());
         viewHolder.image.setImageResource(getItem().getImage());
     }
 
@@ -41,6 +42,7 @@ public class RecyclerViewAdapter extends SimpleCell<Transaction, RecyclerViewAda
         TextView terminal;
         TextView date;
         TextView amount;
+        TextView balanceType;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -49,6 +51,7 @@ public class RecyclerViewAdapter extends SimpleCell<Transaction, RecyclerViewAda
             terminal = itemView.findViewById(R.id.terminal);
             date = itemView.findViewById(R.id.date);
             amount = itemView.findViewById(R.id.amount);
+            balanceType = itemView.findViewById(R.id.balance_type);
         }
     }
 }

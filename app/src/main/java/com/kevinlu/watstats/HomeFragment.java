@@ -25,6 +25,7 @@ import com.jaychang.srv.SimpleRecyclerView;
 import com.jaychang.srv.decoration.SectionHeaderProvider;
 import com.jaychang.srv.decoration.SimpleSectionHeaderProvider;
 import com.kevinlu.watstats.data.AccountBalance;
+import com.kevinlu.watstats.data.Balance;
 import com.kevinlu.watstats.data.Date;
 import com.kevinlu.watstats.data.Store;
 import com.kevinlu.watstats.util.Conversions;
@@ -82,13 +83,14 @@ public class HomeFragment extends Fragment {
 
         accountBalances = view.findViewById(R.id.account_balances);
         accountBalances.setAdapter(accountBalanceAdapter);
-        accountBalances.setOffscreenPageLimit(2);
+        accountBalances.setOffscreenPageLimit(3);
         accountBalances.setPageTransformer((page, position) -> {
-            float myOffset = position * -(Conversions.dpToPx(Objects.requireNonNull(getContext()), 36) + Conversions.dpToPx(getContext(), 205));
+            float myOffset = position * -(Conversions.dpToPx(Objects.requireNonNull(getContext()), 40)
+                    + Conversions.dpToPx(getContext(), 205));
             page.setTranslationX(myOffset);
         });
 
-        accountBalances.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        /*accountBalances.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -97,7 +99,7 @@ public class HomeFragment extends Fragment {
                 }
                 accountBalances.setCurrentItem(position - 1);
             }
-        });
+        });*/
 
         // This login info is 100% working as confirmed by login screen.
         // No need to check validity.
@@ -183,10 +185,10 @@ public class HomeFragment extends Fragment {
         //Initialize the list of transactions
         transactionList = new ArrayList<>();
 
-        // Transactions from 3 months ago til now, but we'll just return a few rows for recent transactions
-        long THREE_MONTHS_MS = 7884000000L; // Let user decide this?
+        // Transactions from 1 week ago til now, but we'll just return a few rows for recent transactions
+        long RECENT_LENGTH_MS = 604800000L; // Let user decide this?
         java.util.Date dateTo = new java.util.Date();
-        java.util.Date dateFrom = new java.util.Date(dateTo.getTime() - THREE_MONTHS_MS);
+        java.util.Date dateFrom = new java.util.Date(dateTo.getTime() - RECENT_LENGTH_MS);
 
         int NUM_RECENT_TRANSACTIONS = 5;
         compositeDisposable.add(client.getTransactions(new TransactionRequest(dateFrom, dateTo, NUM_RECENT_TRANSACTIONS))
@@ -215,9 +217,10 @@ public class HomeFragment extends Fragment {
                 terminal = store.getName();
             }
             String amount = transaction.getAmount().toString();
+            String balanceType = Objects.requireNonNull(Balance.matchBalance(transaction.getBalanceType().getId())).getName();
             String dateTime = dateFormat.format(transaction.getDate());
             //Get list of unique dates (for headings) and initialize here
-            t = new com.kevinlu.watstats.data.Transaction(terminal, R.drawable.ic_mealplan, amount, dateTime, new Date(0, ""));
+            t = new com.kevinlu.watstats.data.Transaction(terminal, R.drawable.ic_mealplan, amount, balanceType, dateTime, new Date(0, ""));
             transactionList.add(t);
         }
 
@@ -240,7 +243,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setAccountBalances(String mealplanAmount, String flexAmount, String transferAmount) {
-        accountBalanceList.add(new AccountBalance(R.drawable.ic_mealplan, "Meal\nPlan",
+        accountBalanceList.add(new AccountBalance(R.drawable.ic_mealplan, "Residence\nPlan",
                 mealplanAmount, "$ 0"));
         accountBalanceList.add(new AccountBalance(R.drawable.ic_flexdollar, "Flex\nDollars",
                 flexAmount, "$ 0"));

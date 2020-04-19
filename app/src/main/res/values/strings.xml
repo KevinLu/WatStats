@@ -15,4 +15,12 @@
     <string name="December">December</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_transactions">Transactions</string>
+
+    <!--Transactions-->
+    <string name="total_spent_in_month">Total spent in</string>
+    <string name="store_name">Store name</string>
+    <string name="date_time">Date / time</string>
+    <string name="balance_type">Balance type</string>
+    <string name="amount">amount</string>
+    <string name="date">Date</string>
 </resources>

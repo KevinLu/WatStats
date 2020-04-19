@@ -5,15 +5,21 @@ public class Transaction {
     private String terminal;
     private int image;
     private String amount;
+    private String balanceType;
     private Date dateCategory; //used with Date class for headings
     private String dateTime; //The actual text of date and time to output
 
-    public Transaction(String terminal, int image, String amount, String dateTime, Date dateCategory) {
+    public Transaction(String terminal, int image, String amount, String balanceType, String dateTime, Date dateCategory) {
         this.terminal = terminal;
         this.image = image;
         this.amount = amount;
+        this.balanceType = balanceType;
         this.dateCategory = dateCategory;
         this.dateTime = dateTime;
+    }
+
+    public String getBalanceType() {
+        return balanceType;
     }
 
     public String getTerminal() {

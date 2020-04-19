@@ -12,7 +12,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/account_balance_shadow"
         app:cardCornerRadius="20dp"
-        app:cardElevation="15dp"
+        app:cardElevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
