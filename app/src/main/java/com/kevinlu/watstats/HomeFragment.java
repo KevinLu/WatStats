@@ -26,6 +26,7 @@ import com.jaychang.srv.decoration.SectionHeaderProvider;
 import com.jaychang.srv.decoration.SimpleSectionHeaderProvider;
 import com.kevinlu.watstats.data.AccountBalance;
 import com.kevinlu.watstats.data.Date;
+import com.kevinlu.watstats.data.Store;
 import com.kevinlu.watstats.util.Conversions;
 
 import java.math.BigDecimal;
@@ -209,6 +210,10 @@ public class HomeFragment extends Fragment {
         com.kevinlu.watstats.data.Transaction t;
         for (Transaction transaction : transactions.get()) {
             String terminal = transaction.getTerminal().substring(TERMINAL_SUBSTRING_START);
+            Store store = Store.matchStore(transaction.getTerminal());
+            if (store != null) {
+                terminal = store.getName();
+            }
             String amount = transaction.getAmount().toString();
             String dateTime = dateFormat.format(transaction.getDate());
             //Get list of unique dates (for headings) and initialize here
