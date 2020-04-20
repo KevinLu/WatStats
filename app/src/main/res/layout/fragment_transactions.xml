@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/ic_header_bg" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/monthly_spend_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/leftMarginSize"
@@ -55,7 +55,7 @@
         android:textSize="40sp"
         android:translationZ="9dp"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/monthly_spend_text" />
 
     <com.jaychang.srv.SimpleRecyclerView
         android:id="@+id/account_transactions"
@@ -68,8 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0">
-
-    </com.jaychang.srv.SimpleRecyclerView>
+        app:layout_constraintVertical_bias="0.0"
+        app:srv_emptyStateView="@layout/recent_transactions_empty_state" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

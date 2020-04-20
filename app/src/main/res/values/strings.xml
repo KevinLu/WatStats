@@ -23,4 +23,6 @@
     <string name="balance_type">Balance type</string>
     <string name="amount">amount</string>
     <string name="date">Date</string>
+    <string name="no_recent_transactions">No recent transactions found!</string>
+    <string name="abc">ABC</string>
 </resources>

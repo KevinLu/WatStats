@@ -22,7 +22,7 @@
 
     <View
         android:id="@+id/bar"
-        android:layout_width="140dp"
+        android:layout_width="145dp"
         android:layout_height="2dp"
         android:layout_marginStart="@dimen/leftMarginSize"
         android:layout_marginTop="8dp"

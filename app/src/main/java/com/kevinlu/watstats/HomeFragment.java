@@ -1,7 +1,6 @@
 package com.kevinlu.watstats;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import com.francochen.watcard.model.balance.Balances;
 import com.francochen.watcard.model.transaction.Transaction;
 import com.francochen.watcard.model.transaction.TransactionRequest;
 import com.francochen.watcard.model.transaction.Transactions;
-import com.jaychang.srv.SimpleCell;
 import com.jaychang.srv.SimpleRecyclerView;
 import com.jaychang.srv.decoration.SectionHeaderProvider;
 import com.jaychang.srv.decoration.SimpleSectionHeaderProvider;
@@ -30,13 +28,9 @@ import com.kevinlu.watstats.data.Date;
 import com.kevinlu.watstats.data.Store;
 import com.kevinlu.watstats.util.Conversions;
 
-import java.math.BigDecimal;
-
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -47,10 +41,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 
 public class HomeFragment extends Fragment {
 
-    private final int TERMINAL_SUBSTRING_START = 8;
-
     private TextView totalBalance;
-    private ViewPager2 accountBalances;
     private SimpleRecyclerView simpleRecyclerView;
     private AccountBalanceAdapter accountBalanceAdapter;
     private List<AccountBalance> accountBalanceList;
@@ -60,6 +51,7 @@ public class HomeFragment extends Fragment {
     private String user;
     private String pass;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private Date defaultDate = new Date(0, "");
 
     @Nullable
     @Override
@@ -81,7 +73,7 @@ public class HomeFragment extends Fragment {
 
         accountBalanceAdapter = new AccountBalanceAdapter(accountBalanceList);
 
-        accountBalances = view.findViewById(R.id.account_balances);
+        ViewPager2 accountBalances = view.findViewById(R.id.account_balances);
         accountBalances.setAdapter(accountBalanceAdapter);
         accountBalances.setOffscreenPageLimit(3);
         accountBalances.setPageTransformer((page, position) -> {
@@ -156,9 +148,9 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public View getSectionHeaderView(@NonNull com.kevinlu.watstats.data.Transaction transaction, int i) {
-                View view = LayoutInflater.from(activity).inflate(R.layout.header_blank, null, false);
+                View view = LayoutInflater.from(activity).inflate(R.layout.header_blank, ((ViewGroup)getView()), false);
                 if (!blank) {
-                    view = LayoutInflater.from(activity).inflate(R.layout.header_transactions, null, false);
+                    view = LayoutInflater.from(activity).inflate(R.layout.header_transactions, ((ViewGroup)getView()), false);
                     TextView textView = view.findViewById(R.id.header_name);
                     textView.setText(transaction.getDate());
                 }
@@ -211,16 +203,24 @@ public class HomeFragment extends Fragment {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
         com.kevinlu.watstats.data.Transaction t;
         for (Transaction transaction : transactions.get()) {
+            int TERMINAL_SUBSTRING_START = 8;
             String terminal = transaction.getTerminal().substring(TERMINAL_SUBSTRING_START);
+            String location = "?";
+            int color = R.color.aluminum;
             Store store = Store.matchStore(transaction.getTerminal());
+
             if (store != null) {
                 terminal = store.getName();
+                location = store.getLocation();
+                color = store.getColor();
             }
+
             String amount = transaction.getAmount().toString();
             String balanceType = Objects.requireNonNull(Balance.matchBalance(transaction.getBalanceType().getId())).getName();
             String dateTime = dateFormat.format(transaction.getDate());
+
             //Get list of unique dates (for headings) and initialize here
-            t = new com.kevinlu.watstats.data.Transaction(terminal, R.drawable.ic_mealplan, amount, balanceType, dateTime, new Date(0, ""));
+            t = new com.kevinlu.watstats.data.Transaction(terminal, color, location, amount, balanceType, dateTime, defaultDate);
             transactionList.add(t);
         }
 

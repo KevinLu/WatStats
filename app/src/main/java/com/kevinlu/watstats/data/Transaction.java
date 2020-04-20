@@ -3,19 +3,25 @@ package com.kevinlu.watstats.data;
 //Class for a transactions which includes this data
 public class Transaction {
     private String terminal;
-    private int image;
+    private int color;
+    private String location;
     private String amount;
     private String balanceType;
     private Date dateCategory; //used with Date class for headings
     private String dateTime; //The actual text of date and time to output
 
-    public Transaction(String terminal, int image, String amount, String balanceType, String dateTime, Date dateCategory) {
+    public Transaction(String terminal, int color, String location, String amount, String balanceType, String dateTime, Date dateCategory) {
         this.terminal = terminal;
-        this.image = image;
+        this.color = color;
+        this.location = location;
         this.amount = amount;
         this.balanceType = balanceType;
         this.dateCategory = dateCategory;
         this.dateTime = dateTime;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public String getBalanceType() {
@@ -26,8 +32,8 @@ public class Transaction {
         return terminal;
     }
 
-    public int getImage() {
-        return image;
+    public int getColor() {
+        return color;
     }
 
     public String getAmount() {
