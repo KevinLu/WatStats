@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1F5BF3</color>
-    <color name="colorPrimaryDark">#0947E8</color>
-    <color name="colorPrimaryDarker">#062888</color>
-    <color name="colorAccent">#00A5FF</color>
+    <color name="colorPrimary">#CCCCCC</color>
+    <color name="colorPrimaryDark">#777777</color>
+    <color name="colorPrimaryDarker">#0A0A0A</color>
+    <color name="colorAccent">#F5BF16</color>
 
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
     <color name="loginBkColor">#f0f0f0</color>
+    <color name="whiteBg">#F5F5F5</color>
 
     <!--colors for card-->
     <color name="whiteCardColor">#fff</color>
@@ -30,4 +31,29 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
+    <!--store location colors-->
+    <color name="uw">#000000</color>
+    <color name="v1">#5626C4</color>
+    <color name="cmh">#D91E7C</color>
+    <color name="rev">#23AB35</color>
+    <color name="mkv">#0369C2</color>
+    <color name="dp">#D93F00</color>
+    <color name="slc">#000000</color>
+    <color name="pac">#000000</color>
+    <color name="ahs">#0098A5</color>
+    <color name="opt">#005963</color>
+    <color name="hh">#BF6F09</color>
+    <color name="uwp">#9930B8</color>
+    <color name="dc">#C60078</color>
+    <color name="ml">#2BBC6F</color>
+    <color name="sch">#601400</color>
+    <color name="ec5">#9A1818</color>
+    <color name="eit">#607000</color>
+    <color name="ev3">#7D9B27</color>
+    <color name="uc">#B59A0F</color>
+    <color name="stc">#0F5491</color>
+    <color name="al">#D55723</color>
+    <color name="qnc">#1717A5</color>
+    <color name="bmh">#2071A7</color>
 </resources>

@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name">WatStats</string>
 
+    <!--Login-->
+    <string name="watcard_number">Watcard number</string>
+    <string name="pin">Pin</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login">Log in</string>
+
+    <!--Homepage-->
+    <string name="total_balance">Total balance</string>
+    <string name="current_balance">$ Bal</string>
+    <string name="balances">Balances</string>
+    <string name="recent_transactions">Recent transactions</string>
     <string name="December">December</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_transactions">Transactions</string>
+
+    <!--Transactions-->
+    <string name="total_spent_in_month">Total spent in</string>
+    <string name="store_name">Store name</string>
+    <string name="date_time">Date / time</string>
+    <string name="balance_type">Balance type</string>
+    <string name="amount">amount</string>
+    <string name="date">Date</string>
+    <string name="no_recent_transactions">No recent transactions found!</string>
+    <string name="abc">ABC</string>
+    <string name="account_name">Account Name</string>
+    <string name="account_icon">Account icon</string>
 </resources>
