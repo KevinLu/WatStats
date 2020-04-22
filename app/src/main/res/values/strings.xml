@@ -25,4 +25,6 @@
     <string name="date">Date</string>
     <string name="no_recent_transactions">No recent transactions found!</string>
     <string name="abc">ABC</string>
+    <string name="account_name">Account Name</string>
+    <string name="account_icon">Account icon</string>
 </resources>

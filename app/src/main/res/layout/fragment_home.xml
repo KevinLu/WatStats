@@ -7,12 +7,12 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/home_header_bg_highlight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:elevation="5dp"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/ic_header_bg_highlight" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/home_header_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
@@ -42,7 +42,7 @@
         android:textSize="20sp"
         android:translationZ="9dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/home_header_bg" />
 
     <TextView
         android:id="@+id/total_balance"
@@ -54,7 +54,7 @@
         android:text="@string/current_balance"
         android:textColor="@color/whiteTextColor"
         android:textSize="40sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/home_header_bg"
         app:layout_constraintTop_toBottomOf="@+id/monthly_spend_text" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/home_header_bg" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/account_balances"
@@ -97,9 +97,11 @@
         android:id="@+id/account_transactions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/leftMarginSize"
         android:layout_marginTop="8dp"
-        android:requiresFadingEdge="vertical"
+        android:layout_marginEnd="@dimen/leftMarginSize"
         android:fadingEdgeLength="100dp"
+        android:requiresFadingEdge="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

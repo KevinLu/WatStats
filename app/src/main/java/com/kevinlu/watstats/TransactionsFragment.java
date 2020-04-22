@@ -1,6 +1,5 @@
 package com.kevinlu.watstats;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,13 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.francochen.watcard.WatCardClient;
 import com.francochen.watcard.model.transaction.TransactionRequest;
 import com.francochen.watcard.model.transaction.Transactions;
 import com.jaychang.srv.SimpleRecyclerView;
-import com.jaychang.srv.decoration.DividerItemDecoration;
 import com.jaychang.srv.decoration.SectionHeaderProvider;
 import com.jaychang.srv.decoration.SimpleSectionHeaderProvider;
 import com.kevinlu.watstats.data.Balance;
@@ -39,8 +36,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 
 public class TransactionsFragment extends Fragment {
-
-    private final int TERMINAL_SUBSTRING_START = 8;
 
     private TextView monthlySpendAmount;
     private TextView monthlySpendText;
@@ -157,6 +152,7 @@ public class TransactionsFragment extends Fragment {
         int i = 0;
 
         for (com.francochen.watcard.model.transaction.Transaction transaction : transactions.get()) {
+            int TERMINAL_SUBSTRING_START = 8;
             String terminal = transaction.getTerminal().substring(TERMINAL_SUBSTRING_START);
             String location = "?";
             int color = R.color.aluminum;

@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/whiteBg"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:elevation="5dp"
-        android:scaleType="fitXY"
-        android:translationZ="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_header_bg_highlight" />
+        android:background="@color/whiteBg">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:scaleType="fitXY"
-        android:translationZ="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_header_bg" />
+        <ImageView
+            android:id="@+id/home_header_bg_highlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:elevation="5dp"
+            android:scaleType="fitXY"
+            android:translationZ="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_header_bg_highlight" />
 
-    <TextView
-        android:id="@+id/monthly_spend_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/leftMarginSize"
-        android:layout_marginTop="32dp"
-        android:text="@string/total_spent_in_month"
-        android:textColor="@color/whiteTextColor"
-        android:textSize="20sp"
-        android:translationZ="9dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        <ImageView
+            android:id="@+id/home_header_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:scaleType="fitXY"
+            android:translationZ="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_header_bg" />
 
-    <TextView
-        android:id="@+id/monthly_spend_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/leftMarginSize"
-        android:fontFamily="@font/opensans_bold"
-        android:text="@string/current_balance"
-        android:textColor="@color/whiteTextColor"
-        android:textSize="40sp"
-        android:translationZ="9dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/monthly_spend_text" />
+        <TextView
+            android:id="@+id/monthly_spend_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/leftMarginSize"
+            android:layout_marginTop="32dp"
+            android:text="@string/total_spent_in_month"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="20sp"
+            android:translationZ="9dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/home_header_bg" />
 
-    <com.jaychang.srv.SimpleRecyclerView
-        android:id="@+id/account_transactions"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:foregroundGravity="center"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srv_emptyStateView="@layout/recent_transactions_empty_state" />
+        <TextView
+            android:id="@+id/monthly_spend_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/leftMarginSize"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/current_balance"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="40sp"
+            android:translationZ="9dp"
+            app:layout_constraintStart_toStartOf="@+id/home_header_bg"
+            app:layout_constraintTop_toBottomOf="@+id/monthly_spend_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.jaychang.srv.SimpleRecyclerView
+            android:id="@+id/account_transactions"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/leftMarginSize"
+            android:layout_marginEnd="@dimen/leftMarginSize"
+            android:clipToPadding="false"
+            android:foregroundGravity="center"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_header_bg_highlight"
+            app:layout_constraintVertical_bias="0.0"
+            app:srv_emptyStateView="@layout/recent_transactions_empty_state" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

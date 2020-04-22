@@ -28,6 +28,7 @@ import com.kevinlu.watstats.data.Date;
 import com.kevinlu.watstats.data.Store;
 import com.kevinlu.watstats.util.Conversions;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,11 +121,7 @@ public class HomeFragment extends Fragment {
                 .subscribeWith(new DisposableSingleObserver<Balances>() {
                     @Override
                     public void onSuccess(Balances balances) {
-                        setAccountBalances(
-                                "$ " + balances.get(BalanceType.RESIDENCE_PLAN).getBalance().toString(),
-                                "$ " + balances.get(BalanceType.FLEXIBLE_2).getBalance().toString(),
-                                "$ " + balances.get(BalanceType.TRANSFER_MP).getBalance().toString()
-                        );
+                        setAccountBalances(balances);
                         //TODO: change float to BigDecimal
                         float sum = 0;
                         for (BalanceType balanceType : BalanceType.values()) {
@@ -148,9 +145,9 @@ public class HomeFragment extends Fragment {
             @NonNull
             @Override
             public View getSectionHeaderView(@NonNull com.kevinlu.watstats.data.Transaction transaction, int i) {
-                View view = LayoutInflater.from(activity).inflate(R.layout.header_blank, ((ViewGroup)getView()), false);
+                View view = LayoutInflater.from(activity).inflate(R.layout.header_blank, ((ViewGroup) getView()), false);
                 if (!blank) {
-                    view = LayoutInflater.from(activity).inflate(R.layout.header_transactions, ((ViewGroup)getView()), false);
+                    view = LayoutInflater.from(activity).inflate(R.layout.header_transactions, ((ViewGroup) getView()), false);
                     TextView textView = view.findViewById(R.id.header_name);
                     textView.setText(transaction.getDate());
                 }
@@ -242,13 +239,18 @@ public class HomeFragment extends Fragment {
         totalBalance.setText(total);
     }
 
-    private void setAccountBalances(String mealplanAmount, String flexAmount, String transferAmount) {
-        accountBalanceList.add(new AccountBalance(R.drawable.ic_mealplan, "Residence\nPlan",
-                mealplanAmount, "$ 0"));
-        accountBalanceList.add(new AccountBalance(R.drawable.ic_flexdollar, "Flex\nDollars",
-                flexAmount, "$ 0"));
-        accountBalanceList.add(new AccountBalance(R.drawable.ic_transfer, "Transfer\nMeal Plan",
-                transferAmount, "$ 0"));
+    private void setAccountBalances(Balances balances) {
+        for (BalanceType balanceType : BalanceType.values()) {
+            if (balances.get(balanceType).getBalance().compareTo(BigDecimal.ZERO) != 0) {
+                Balance balance = Balance.matchBalance(balanceType.getId());
+                assert balance != null;
+                accountBalanceList.add(new AccountBalance(
+                                Objects.requireNonNull(balance.getIcon()),
+                                Objects.requireNonNull(balance.getNewlineName()),
+                                "$ " + balances.get(balanceType).getBalance().toString(),
+                                "$ 0"));
+            }
+        }
         accountBalanceAdapter.notifyDataSetChanged();
     }
 

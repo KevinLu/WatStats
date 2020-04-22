@@ -6,13 +6,12 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="130dp"
+        android:layout_width="138dp"
         android:layout_height="195dp"
         android:layout_marginStart="@dimen/leftMarginSize"
         android:layout_marginTop="8dp"
-        android:background="@drawable/account_balance_shadow"
         app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
+        app:cardElevation="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +25,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="22dp"
-                android:contentDescription="Account icon"
+                android:contentDescription="@string/account_icon"
                 android:src="@drawable/ic_mealplan" />
 
             <TextView
@@ -38,8 +37,7 @@
                 android:layout_marginTop="5dp"
                 android:lineSpacingExtra="0dp"
                 android:lineSpacingMultiplier="0.8"
-                android:text="Meal
-                Plan"
+                android:text="@string/account_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/balanceDescTextSize" />
 
@@ -49,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/account_title"
                 android:layout_marginStart="22dp"
-                android:text="$ 823.49"
+                android:text="@string/current_balance"
                 android:textColor="@color/black"
                 android:textSize="@dimen/balanceDescTextSize"
                 android:textStyle="bold" />
