@@ -24,8 +24,6 @@ import io.reactivex.observers.DisposableCompletableObserver;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private AnimationDrawable anim;
-
     private EditText editTextUser, editTextPass;
     private CheckBox saveLoginCheckBox;
     private SharedPreferences loginPreferences;
@@ -42,12 +40,6 @@ public class LoginActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
         setContentView(R.layout.activity_login);
-
-        LinearLayout container = findViewById(R.id.container);
-
-        anim = (AnimationDrawable) container.getBackground();
-        anim.setEnterFadeDuration(1000);
-        anim.setExitFadeDuration(2000);
 
         editTextUser = findViewById(R.id.loginUser);
         editTextPass = findViewById(R.id.loginPass);
@@ -143,18 +135,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 })
         );
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (anim != null && !anim.isRunning()) anim.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (anim != null && anim.isRunning()) anim.stop();
     }
 
     @Override
