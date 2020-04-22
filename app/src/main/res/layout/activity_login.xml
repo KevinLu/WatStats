@@ -3,35 +3,27 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/animation_list"
+    android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="50dp">
 
-    <TextView
-        android:id="@+id/appHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
-        android:padding="20dp"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/watstats_logo" />
 
     <EditText
         android:id="@+id/loginUser"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:background="@drawable/login_text_bg"
         android:hint="@string/watcard_number"
         android:padding="10dp"
-        android:textColor="#fff"
-        android:textColorHint="#fff"
+        android:textColor="@color/black"
+        android:textColorHint="@color/almost"
         android:autofillHints="username"
         android:inputType="number" />
 
@@ -43,10 +35,9 @@
         android:adjustViewBounds="true"
         android:background="@drawable/login_text_bg"
         android:hint="@string/pin"
-        android:inputType="numberPassword"
         android:padding="10dp"
-        android:textColor="#fff"
-        android:textColorHint="#fff"
+        android:textColor="@color/black"
+        android:textColorHint="@color/almost"
         android:autofillHints="password" />
 
     <CheckBox
@@ -55,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/remember_me"
-        android:textColor="#FFF" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/loginButton"
@@ -63,6 +54,8 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/login_button"
+        android:backgroundTint="#FACD3D"
+        android:fontFamily="@font/opensans_semibold"
         android:text="@string/login"
         android:textColor="#000" />
 

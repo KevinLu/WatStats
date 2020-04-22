@@ -60,23 +60,13 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/account_change_icon"
-                    android:layout_width="wrap_content"
+                <ProgressBar
+                    android:id="@+id/account_budget"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:contentDescription="Trending icon"
-                    android:src="@drawable/ic_trending_down_24px" />
-
-                <TextView
-                    android:id="@+id/account_change"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0.5"
-                    android:text="$ 395.21"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/balanceChangeTextSize" />
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progress="75"
+                    android:max="100" />
             </LinearLayout>
 
         </RelativeLayout>

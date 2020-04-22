@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
         SharedPreferences loginPreferences = getSharedPreferences("login", MODE_PRIVATE);
         boolean saveLogin = loginPreferences.getBoolean("saveLogin", false);
 
